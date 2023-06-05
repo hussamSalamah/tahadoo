@@ -3188,6 +3188,7 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
         </div>
       </div>
     </div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
       "IntersectionObserver" in window && "Intl" in window && "Locale" in window.Intl || document.write(`\x3Cscript src="https://img1.wsimg.com/poly/v3/polyfill.min.js?rum=0&unknown=polyfill&flags=gated&features=Intl.~locale.en-PK">\x3C/script>`)
     </script>
@@ -3195,5 +3196,20 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
     <script src="//img1.wsimg.com/ceph-p3-01/website-builder-data-prod/static/widgets/UX.4.32.2.js" crossorigin></script>
     <script src="//img1.wsimg.com/blobby/go/03cf1f95-1a90-413e-b7e0-f8620a7388ba/gpub/7dc4db73109cee2b/script.js" crossorigin></script>
     <script defer src="//img1.wsimg.com/traffic-assets/js/tccl.min.js" crossorigin></script>
+	
+	<script>
+		var folder = "images/cat1/";
+
+	$.ajax({
+		url : folder,
+		success: function (data) {
+			$(data).find("a").attr("href", function (i, val) {
+				if( val.match(/\.(jpe?g|png|gif)$/) ) { 
+					$("body").append( "<img src='"+ folder + val +"'>" );
+				} 
+			});
+		}
+	});
+	</script>
   </body>
 </html>
