@@ -1,0 +1,163 @@
+var currencyRatioAPI = 1;
+function showCurRate() {
+	var cur = document.getElementById('currency').value;
+	if(cur != 'ILS') {
+		convert(cur, 'ILS');
+		}
+	else {
+		document.getElementById('curRateDiv').style.display = "none";
+		document.getElementById('curRate').value = 1;
+		
+	}
+}
+
+function getIncomeTax(){
+	var currentSalary = document.getElementById('salary').value ;
+	var extra = document.getElementById('extra').value;
+	currentSalary = Number(currentSalary) + Number(extra);
+	var currencyRatio = Number(document.getElementById('curRate').value);
+	var salary = currentSalary * currencyRatio;
+	
+	var threshold = 3000;
+	var level1 = 6250;
+	var level2 = 12500;
+	var ratio1 = 0.05;
+	var ratio2 = 0.10;
+	var ratio3 = 0.15;
+	var tax = 0;
+	var total = salary;
+	
+	if(salary <= threshold) {
+		//do nothing
+	} else {
+		var sal = salary - threshold;
+		if (sal <= level1) {
+			tax = sal * ratio1;
+			total = salary - tax;
+		}
+		else if (sal > level1 && sal <= level2) {
+			var sum1 = level1 * ratio1;
+			var sal2 = sal - level1;
+			var sum2 = sal2 * ratio2;
+			tax = sum1 + sum2
+			total = salary - tax;
+		}
+		else if (sal > level2){
+			var sum1 = level1 * ratio1;
+			var sum2 = (level2 - level1) * ratio2;
+			var sal2 = sal - level2;
+			var sum3 = sal2 * ratio3;
+			tax = sum1 + sum2 + sum3;
+			total = salary - tax;
+		}
+	}
+	var finalTax = tax/currencyRatio;
+	var finalTotal = total/currencyRatio
+	document.getElementById('taxValue').innerHTML = finalTax.toFixed(2);
+	document.getElementById('total').innerHTML = finalTotal.toFixed(2);;
+}
+
+function getIndemnity() {
+	var salary = Number(document.getElementById('salary2').value);
+	var years = Number(document.getElementById('years').value);
+	var months = Number(document.getElementById('months').value);
+	var forced = document.getElementById('forced').checked;
+	var pto = Number(document.getElementById('PTO').value);
+	
+	var level1 = 5;
+	var level2 = 10;
+	var ratio1 = 0.333333333333;
+	var ratio2 = 0.666666666666;
+	var ratio3 = 1.0;
+	
+	var totalYears = years;
+	if (months)
+		totalYears = totalYears + (months/12);
+	var sum = 0;
+	if (pto > 0)
+		sum = (pto/30) * salary;
+	if(!forced) {
+	
+		if (totalYears < level1) {
+			sum = sum + (ratio1 * salary * totalYears);
+		} else if (totalYears == level1 || totalYears < level2) {
+			sum = sum + (ratio2 * salary * totalYears);
+		} else if (totalYears == level2 || totalYears > level2) {
+			sum = sum + (ratio3 * salary * totalYears);
+		}
+		
+	} else {
+		sum = sum + (ratio3 * salary * totalYears);
+		var forcedMonthsSubsit = totalYears * 2;
+		if (forcedMonthsSubsit > 24)
+			forcedMonthsSubsit = 24;
+		var forcedValue = salary * forcedMonthsSubsit;
+		sum = sum + forcedValue;
+	}
+	sum = Math.round(sum);
+	document.getElementById('total2').innerHTML = sum;
+}
+
+function taxFormToggel() {
+	var show = document.getElementById('taxForm-content').style.display;
+	if (show == 'none')
+		document.getElementById('taxForm-content').style.display= 'block';
+	else
+		document.getElementById('taxForm-content').style.display= 'none';
+}
+
+function indemnityFormToggel() {
+	var show = document.getElementById('indemnityForm-content').style.display;
+	if (show == 'none')
+		document.getElementById('indemnityForm-content').style.display= 'block';
+	else
+		document.getElementById('indemnityForm-content').style.display= 'none';
+}
+
+function convert(cur) {
+      const host = "api.frankfurter.app";
+
+      fetch(`https://${host}/latest?amount=1&from=USD&to=ILS`)
+        .then((val) => val.json())
+        .then((val) => {
+          currencyRatioAPI = (Object.values(val.rates)[0]);
+		  document.getElementById('curRateDiv').style.display = "block";
+		  if (cur =='USD')
+			document.getElementById('curRate').value = currencyRatioAPI;
+		  else if ( cur == 'JOD')
+			document.getElementById('curRate').value = (currencyRatioAPI * 1.41).toFixed(4);
+          
+        });
+
+    }
+
+
+function getNewSalary() {
+      const host = "api.frankfurter.app";
+		var currentUsdRate = 1;
+      fetch(`https://${host}/latest?amount=1&from=USD&to=ILS`)
+        .then((val) => val.json())
+        .then((val) => {
+          currentUsdRate = (Object.values(val.rates)[0]);
+		  var fixRate = Number(document.getElementById('staticRate').value);
+		  var currentSalary = Number(document.getElementById('currentSalary').value);
+		  var newRatio = ((fixRate - currentUsdRate)/ currentUsdRate);
+		  var newShaqelSalary = currentSalary * currentUsdRate;
+		  var newUSDSalary = currentSalary;
+		  if (newRatio > 0 ) {
+			newUSDSalary = newUSDSalary + (newUSDSalary*newRatio);
+			newShaqelSalary = newUSDSalary * currentUsdRate;
+		  }
+		  document.getElementById('totalUsd').innerHTML = newUSDSalary.toFixed(2);
+		  document.getElementById('totalIls').innerHTML = newShaqelSalary.toFixed(2);
+		  });
+		  
+	}
+	
+	function staticDolarToggel() {
+	var show = document.getElementById('staticDolar-content').style.display;
+	if (show == 'none')
+		document.getElementById('staticDolar-content').style.display= 'block';
+	else
+		document.getElementById('staticDolar-content').style.display= 'none';
+}
