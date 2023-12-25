@@ -6,10 +6,12 @@
 <meta name="description" content="Mowathaf tools">
 <meta name="description" content="حساب ضريبة الدخل">
 <meta name = "viewport" content = "width = device-width, user-scalable = 0, initial-scale = 1.0, maximum-scale = 1.0" />
-<h1 class="header">Falastini  Tools</h1>
+<h1 class="header"></h1>
+<div class="logo">
+<img src="images/falastini.png"/>
+</div>
 </head>
 <body dir="rtl">
-<img src="images/falastini.png"/>
 
  <div class="container">
 <div id="taxForm" class="form">
@@ -118,8 +120,13 @@ function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount
 </script>
 <style>
 	 
-	.header {
+	.header, .logo {
 		text-align: center;
+	}
+	
+	.logo {
+		width:20%;
+		height:20%;
 	}
 	 
 	 .footer {
