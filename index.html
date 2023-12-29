@@ -42,7 +42,7 @@
 <br>
 <br>
 <br>
-<button id="submit" onclick="getIncomeTax()" style="margin: 7px;"> احسب</button>
+<button id="submit1" class="submit-button" onclick="getIncomeTax()" style="margin: 7px;"> احسب</button>
 <br>
 <br>
 <label > قيمة الضريبة: </label>
@@ -76,7 +76,7 @@
 <input type="checkbox" id="forced">طرد تعسفي</input>
 <br>
 <br>
-<button id="submit" onclick="getIndemnity()"> احسب</button>
+<button id="submit2" class="submit-button" onclick="getIndemnity()"> احسب</button>
 <br>
 <br>
 <label > المستحقات: </label>
@@ -98,7 +98,7 @@
 <input type="text" id="currentSalary" value="1000" ></input>
 <br>
 <br>
-<button id="submit" onclick="getNewSalary()" style="margin: 7px;"> احسب</button>
+<button id="submit3" class="submit-button" onclick="getNewSalary()" style="margin: 7px;"> احسب</button>
 <br>
 <br>
 <label > قيمة الدخل بالدولار </label>
@@ -140,15 +140,15 @@ function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount
 	}
 	 
 	.form {
-		--margin: 30px;
-		--text-align: center;
+		border-bottom: dashed;
+		padding-bottom: 15px;
 	}
 	.Toggel {
 		cursor: pointer;
 		color: blue;
 	}
-	button {
-		width: 50%;
+	.submit-button {
+		width: 100px;
 		cursor: pointer;
 		color: orange;
 		font-size: larger;
