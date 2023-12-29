@@ -18,7 +18,7 @@
 <h3 id="taxFormToggel" class="Toggel" onclick="taxFormToggel()"> حساب ضريبة الدخل</h3>
 <br>
 <br>
-<div id="taxForm-content" style="display:none;">
+<div id="taxForm-content" class="formContents" style="display:none;">
 <label>اختر العملة: </label>
 <select id="currency" onchange="showCurRate()">
   <option value="ILS" selected="selected">شيقل جديد</option>
@@ -58,7 +58,7 @@
 <h3 id="indemnityFormToggel" class="Toggel" onclick="indemnityFormToggel()"> حساب مكافأة نهاية الخدمة</h3>
 <br>
 <br>
-<div id="indemnityForm-content" style="display:none;">
+<div id="indemnityForm-content" class="formContents" style="display:none;">
 <label>الراتب الشهري: </label>
 <input type="text" id="salary2"></input>
 <br>
@@ -89,7 +89,7 @@
 
 <br>
 <br>
-<div id="staticDolar-content" style="display:none;">
+<div id="staticDolar-content" class="formContents" style="display:none;">
 <label>قيمة الدولار الثابتة بالشيكل </label>
 <input type="text" id="staticRate" value="3.5" ></input>
 <br>
@@ -140,8 +140,10 @@ function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount
 	}
 	 
 	.form {
-		border-bottom: dashed;
 		padding-bottom: 15px;
+	}
+	.formContents {
+		border-bottom: dashed;
 	}
 	.Toggel {
 		cursor: pointer;
