@@ -146,14 +146,14 @@ var currencyRatioAPI=1;function showCurRate(){var e=document.getElementById("cur
 function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount=1&from=USD&to=ILS").then(t=>t.json()).then(e=>{t=Object.values(e.rates)[0];var n=Number(document.getElementById("staticRate").value),a=Number(document.getElementById("currentSalary").value),o=(n-t)/t,l=a*t,r=a;o>0&&(l=(r+=r*o)*t),document.getElementById("totalUsd").innerHTML=r.toFixed(2),document.getElementById("totalIls").innerHTML=l.toFixed(2)})}function staticDolarToggel(){var t=document.getElementById("staticDolar-content").style.display;document.getElementById("staticDolar-content").style.display="none"==t?"block":"none";document.getElementById("taxForm-content").style.display="none";document.getElementById("indemnityForm-content").style.display="none"; document.getElementById("insurance-content").style.display = "none";}
 
 function insuranceShamel(){
-	var carPrice = document.getElementById("carPrice");
+	var carPrice = document.getElementById("carPrice").value;
 	if (carPrice <= 57000) return 1000;
 	
 	return ((carPrice- 57000)*0.0175 + 997.5)
 }
 
 function insuranceStatic(){
-	var motor = document.getElementById("motor");
+	var motor = document.getElementById("motor").value;
 	if (motor <= 1000) return 935;
 	if (motor <= 1500) return 1035;
 	if (motor <= 2000) return 1340;
