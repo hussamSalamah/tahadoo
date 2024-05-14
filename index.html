@@ -1,10 +1,10 @@
 <html>
-<title>Falastini Tools</title>
+<title>Salameh Tools</title>
 <head>
 <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/best-employee-10-972627.png">
 
-<meta name="description" content="Mowathaf tools">
-<meta name="description" content="حساب ضريبة الدخل">
+<meta name="description" content="Salameh tools">
+<meta name="description" content="salameh tools">
 <meta name = "viewport" content = "width = device-width, user-scalable = 0, initial-scale = 1.0, maximum-scale = 1.0" />
 <h1 class="header"></h1>
 <div class="logo">
@@ -137,10 +137,15 @@
 </div>
 
 
-<div class="footer">
-	<p> H-S موقع تجريبي</p>
-</div>
-</div>
+<footer>
+  <p>Salameh Tools<br>
+  <a href="mailto:hussamsalamah@gmail.com">email us</a> <a href="tel:0597377540">call us</a><!-- WhatsApp icon -->
+<a href="https://wa.me/00972597377540" class="whatsapp_float" target="_blank" rel="noopener noreferrer">
+  <img src="images/whats.png"/>
+</a>
+
+</p>
+</footer>
 <script>
 var currencyRatioAPI=1;function showCurRate(){var e=document.getElementById("currency").value;"ILS"!=e?convert(e,"ILS"):(document.getElementById("curRateDiv").style.display="none",document.getElementById("curRate").value=1)}function getIncomeTax(){var e=document.getElementById("salary").value,t=document.getElementById("extra").value;e=Number(e)+Number(t);var n=Number(document.getElementById("curRate").value),o=e*n,m=0,u=o;if(o<=3e3);else{var a=o-3e3;if(a<=6250)u=o-(m=.05*a);else if(a>6250&&a<=12500){u=o-(m=312.5+.1*(a-6250))}else if(a>12500){u=o-(m=312.5+625+.15*(a-12500))}}var l=m/n,c=u/n;document.getElementById("taxValue").innerHTML=l.toFixed(2),document.getElementById("total").innerHTML=c.toFixed(2)}function getIndemnity(){var e=Number(document.getElementById("salary2").value),t=Number(document.getElementById("years").value),n=Number(document.getElementById("months").value),o=document.getElementById("forced").checked,m=Number(document.getElementById("PTO").value),u=t;n&&(u+=n/12);var a=0;if(m>0&&(a=m/30*e),o){a+=1*e*u;var l=2*u;l>24&&(l=24),a+=e*l}else u<5?a+=.333333333333*e*u:5==u||u<10?a+=.666666666666*e*u:(10==u||u>10)&&(a+=1*e*u);a=Math.round(a),document.getElementById("total2").innerHTML=a}function taxFormToggel(){var e=document.getElementById("taxForm-content").style.display;document.getElementById("taxForm-content").style.display="none"==e?"block":"none";document.getElementById("indemnityForm-content").style.display="none";document.getElementById("indemnityForm-content").style.display="none";document.getElementById("staticDolar-content").style.display="none"; document.getElementById("insurance-content").style.display = "none";}function indemnityFormToggel(){var e=document.getElementById("indemnityForm-content").style.display;document.getElementById("indemnityForm-content").style.display="none"==e?"block":"none"; document.getElementById("taxForm-content").style.display="none";document.getElementById("staticDolar-content").style.display="none"; document.getElementById("insurance-content").style.display = "none";}function convert(e){fetch("https://api.frankfurter.app/latest?amount=1&from=USD&to=ILS").then(e=>e.json()).then(t=>{currencyRatioAPI=Object.values(t.rates)[0],document.getElementById("curRateDiv").style.display="block","USD"==e?document.getElementById("curRate").value=currencyRatioAPI:"JOD"==e&&(document.getElementById("curRate").value=(1.41*currencyRatioAPI).toFixed(4))})}
 function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount=1&from=USD&to=ILS").then(t=>t.json()).then(e=>{t=Object.values(e.rates)[0];var n=Number(document.getElementById("staticRate").value),a=Number(document.getElementById("currentSalary").value),o=(n-t)/t,l=a*t,r=a;o>0&&(l=(r+=r*o)*t),document.getElementById("totalUsd").innerHTML=r.toFixed(2),document.getElementById("totalIls").innerHTML=l.toFixed(2)})}function staticDolarToggel(){var t=document.getElementById("staticDolar-content").style.display;document.getElementById("staticDolar-content").style.display="none"==t?"block":"none";document.getElementById("taxForm-content").style.display="none";document.getElementById("indemnityForm-content").style.display="none"; document.getElementById("insurance-content").style.display = "none";}
