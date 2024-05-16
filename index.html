@@ -327,10 +327,40 @@ document.getElementById("staticDolar-content").style.display="none"
 		--width: 40%;
 	}
 	}
-	
+@media only screen and (max-width: 600px) {	
 	/* (A) FORCE ALL ITEMS INTO SINGLE ROW */
 .hmove { display: flex; }
-.hitem { width: 25%; flex-shrink: 0; }
+.hitem { width: 80%; flex-shrink: 0; text-align:right; }
+.hwrap { overflow: hidden; }
+ 
+/* (B) MOVE ITEMS FROM RIGHT TO LEFT */
+/* first item = 0, fourth item = -300% */
+@keyframes tickerh {
+  0% {
+    transform: translateX(-240%) translateY(0);
+  }
+  
+  100% {
+    transform: translateX(320%) translateY(0);
+  }
+}
+.hmove { animation: tickerh linear 20s infinite; }
+.hmove:hover { animation-play-state: paused; }
+
+.exchange-rate{
+	background-color: beige;
+	text-align: center;
+    display: inline-block;
+	font-size: 18px;
+	margin-top: 10px;
+	}
+}
+
+
+@media only screen and (min-width: 600px) {	
+	/* (A) FORCE ALL ITEMS INTO SINGLE ROW */
+.hmove { display: flex; }
+.hitem { width: 25%; flex-shrink: 0; text-align:right; }
 .hwrap { overflow: hidden; }
  
 /* (B) MOVE ITEMS FROM RIGHT TO LEFT */
@@ -344,18 +374,21 @@ document.getElementById("staticDolar-content").style.display="none"
     transform: translateX(100%) translateY(0);
   }
 }
-.hmove { animation: tickerh linear 30s infinite; }
+.hmove { animation: tickerh linear 40s infinite; }
 .hmove:hover { animation-play-state: paused; }
 
 .exchange-rate{
 	background-color: beige;
-	height: 30px;
-	width: 80%;
-    text-align: center;
+	width:50%;
+	text-align: center;
     display: inline-block;
 	font-size: 18px;
 	margin-top: 10px;
 	}
+}
+
+
+
 </style>
 
 </body>
