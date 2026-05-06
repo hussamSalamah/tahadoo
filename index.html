@@ -170,16 +170,14 @@ function getNewSalary(){var t=1;fetch("https://api.frankfurter.app/latest?amount
 
 async function getusdRate() {
     try {
-        const response = await fetch('https://api.frankfurter.app/latest?amount=1&from=USD&to=ILS');
-        if (!response.ok) {
-            throw new Error('Failed to fetch data from the API.');
-        }
-        const data = await response.json();
-        const ILSRate = data.rates.ILS;
-        return ILSRate;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null; // Handle the error gracefully in your application
+        const res = await fetch(
+            'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json'
+        );
+        const data = await res.json();
+        return data.usd.ils;
+    } catch (e) {
+        console.error(e);
+        return null;
     }
 }
 getusdRate().then((rate) => {
@@ -190,16 +188,14 @@ getusdRate().then((rate) => {
 
 async function getjodRate() {
     try {
-        const response = await fetch('https://api.frankfurter.app/latest?amount=1&from=USD&to=ILS');
-        if (!response.ok) {
-            throw new Error('Failed to fetch data from the API.');
-        }
-        const data = await response.json();
-        const ILSRate = data.rates.ILS;
-        return ILSRate;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null; // Handle the error gracefully in your application
+        const res = await fetch(
+            'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/jod.json'
+        );
+        const data = await res.json();
+        return data.jod.ils;
+    } catch (e) {
+        console.error(e);
+        return null;
     }
 }
 getjodRate().then((rate) => {
@@ -211,16 +207,14 @@ getjodRate().then((rate) => {
 
 async function geteurRate() {
     try {
-        const response = await fetch('https://api.frankfurter.app/latest?amount=1&from=eur&to=ILS');
-        if (!response.ok) {
-            throw new Error('Failed to fetch data from the API.');
-        }
-        const data = await response.json();
-        const ILSRate = data.rates.ILS;
-        return ILSRate;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null; // Handle the error gracefully in your application
+        const res = await fetch(
+            'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json'
+        );
+        const data = await res.json();
+        return data.eur.ils;
+    } catch (e) {
+        console.error(e);
+        return null;
     }
 }
 geteurRate().then((rate) => {
