@@ -416,17 +416,90 @@ document.getElementById("staticDolar-content").style.display="none"
 .hmove { animation: tickerh linear 40s infinite; }
 .hmove:hover { animation-play-state: paused; }
 
-.exchange-rate{
-	background-color: beige;
-	width:50%;
-	text-align: center;
-    display: inline-block;
-	font-size: 18px;
-	margin-top: 10px;
-	}
 }
 
 
+/* CONTAINER */
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 10px;
+}
+
+/* CARD */
+.form {
+  background: #fff;
+  border-radius: 14px;
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* HEADER */
+.Toggel {
+  margin: 0;
+  padding: 16px;
+  font-size: 16px;
+  color: #1f4e8c;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ARROW */
+.Toggel::after {
+  content: "▼";
+  transition: 0.3s;
+}
+
+.form.active .Toggel::after {
+  transform: rotate(180deg);
+}
+
+/* CONTENT */
+.formContents {
+  display: none;
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* INPUTS */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.submit-button {
+  width: 100%;
+  background: #f39c12;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background: #e67e22;
+}
+
+/* RESULTS */
+.green { color: #27ae60; font-weight: bold; }
+.red { color: #e74c3c; font-weight: bold; }
+
+/* EXCHANGE */
+.exchange-rate {
+  background: #eae8d5;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 10px auto;
+  text-align: center;
+}
 
 </style>
 
