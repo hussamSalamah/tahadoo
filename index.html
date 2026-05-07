@@ -245,8 +245,7 @@ async function getjodRate() {
 }
 getjodRate().then((rate) => {
     if (rate !== null) {
-		var val = rate*1.411;
-        document.getElementById('jodtoils').innerHTML = val.toFixed(4);
+        document.getElementById('jodtoils').innerHTML = rate;
     }
 });
 
