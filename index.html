@@ -33,7 +33,7 @@
 				
  <div class="exchange-rate">
 	<div class="hwrap"><div class="hmove">
-  <div class="hitem">اسعار العملات</div>
+  <div class="hitem">اسعار العملات هذا اليوم</div>
   <div class="hitem">دولار الى شيقل: <label id="usdtoils"></label></div>
   <div class="hitem">دينار الى شيقل: <label id="jodtoils"> </label></div>
   <div class="hitem">يورو الى شيقل:<label id="eurtoils"></label></div>
@@ -360,7 +360,7 @@ async function getGoldPrice() {
     const goldPrice = data.chart.result[0].meta.regularMarketPrice;
 	
 	if (goldPrice !== null) {
-        document.getElementById('goldtousd').innerHTML = '$' + goldPrice;
+        document.getElementById('goldtousd').innerHTML = goldPrice + '$';
     }
 
     
