@@ -40,7 +40,14 @@
   
 </div></div>
  </div>
-
+	 
+<div class="weather">
+  <div class="hwrap">
+    <div class="hmove" id="weatherTicker">
+      <div class="hitem"> حالة الطقس هذا الأسبوع</div>
+    </div>
+  </div>
+</div>
 
 <div id="taxForm" class="form">
 <h3 id="taxFormToggel" class="Toggel" onclick="taxFormToggel()"> حساب ضريبة الدخل</h3>
@@ -306,10 +313,50 @@ document.getElementById("indemnityForm-content").style.display="none"
 document.getElementById("staticDolar-content").style.display="none"
 
 }
+function loadWeather() {
+  // Palestine (Ramallah approx)
+  const lat = 31.9;
+  const lon = 35.2;
 
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min&timezone=auto`)
+    .then(res => res.json())
+    .then(data => {
+      const days = data.daily.time;
+      const max = data.daily.temperature_2m_max;
+      const min = data.daily.temperature_2m_min;
+
+      const container = document.getElementById("weatherTicker");
+
+      for (let i = 0; i < 7; i++) {
+        const item = document.createElement("div");
+        item.className = "hitem";
+
+        item.innerHTML =
+          `${formatDate(days[i])} : ${min[i]}° - ${max[i]}°`;
+
+        container.appendChild(item);
+      }
+    });
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("ar-EG", {
+    weekday: "short"
+  });
+}
+
+loadWeather();
 </script>
 <style>
-	 
+	 .weather {
+	  background: #cde1f5;
+	  padding: 8px;
+	  border-radius: 10px;
+	  margin-top: 10px;
+	  text-align: center;
+	  font-size: 16px;
+	}
 	 
 	.logo {
 		text-align: center;
