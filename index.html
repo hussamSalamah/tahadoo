@@ -37,6 +37,7 @@
   <div class="hitem">دولار الى شيقل: <label id="usdtoils"></label></div>
   <div class="hitem">دينار الى شيقل: <label id="jodtoils"> </label></div>
   <div class="hitem">يورو الى شيقل:<label id="eurtoils"></label></div>
+  <div class="hitem">سعر اونصة الذهب: <label id="goldtousd"></label></div>
   
 </div></div>
  </div>
@@ -347,6 +348,26 @@ function formatDate(dateStr) {
 }
 
 loadWeather();
+async function getGoldPrice() {
+  try {
+    const res = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/GC=F");
+    const data = await res.json();
+
+    const goldPrice = data.chart.result[0].meta.regularMarketPrice;
+	
+	if (goldPrice !== null) {
+        document.getElementById('goldtousd').innerHTML = goldPrice;
+    }
+
+    
+
+  } catch (e) {
+    console.error("Gold error", e);
+  }
+}
+
+getGoldPrice();
+
 </script>
 <style>
 	 .weather {
