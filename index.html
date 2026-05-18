@@ -350,13 +350,17 @@ function formatDate(dateStr) {
 loadWeather();
 async function getGoldPrice() {
   try {
-    const res = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/GC=F");
+	  
+	const res = await fetch(
+	      "https://api.allorigins.win/raw?url=https://query1.finance.yahoo.com/v8/finance/chart/GC=F"
+	    );
+
     const data = await res.json();
 
     const goldPrice = data.chart.result[0].meta.regularMarketPrice;
 	
 	if (goldPrice !== null) {
-        document.getElementById('goldtousd').innerHTML = goldPrice;
+        document.getElementById('goldtousd').innerHTML = '$' + goldPrice;
     }
 
     
